@@ -1,0 +1,226 @@
+/* --- Base Variables & Theming --- */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333333;
+    --sidebar-bg: #2c3e50;
+    --sidebar-text: #ecf0f1;
+    --card-bg: #ffffff;
+    --primary-color: #3498db;
+    --border-color: #dddddd;
+    --hover-color: #f1f1f1;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --sidebar-bg: #16213e;
+    --sidebar-text: #e0e0e0;
+    --card-bg: #0f3460;
+    --primary-color: #e94560;
+    --border-color: #2a2a4a;
+    --hover-color: #1a1a2e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Layout --- */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    position: fixed;
+    height: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.nav-links li a {
+    display: block;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    padding: 15px 25px;
+    transition: background 0.2s;
+}
+
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--primary-color);
+}
+
+.nav-links i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.theme-btn {
+    background: transparent;
+    color: var(--sidebar-text);
+    border: 1px solid var(--sidebar-text);
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.theme-btn:hover {
+    background: var(--sidebar-text);
+    color: var(--sidebar-bg);
+}
+
+/* --- Main Content --- */
+.content {
+    margin-left: 250px;
+    padding: 40px;
+    width: calc(100% - 250px);
+}
+
+header {
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+/* --- Cards / Sections --- */
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: background 0.3s;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.card h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.card ul, .card ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.card li {
+    margin-bottom: 8px;
+}
+
+/* --- Tables --- */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--hover-color);
+}
+
+/* --- Search Bar --- */
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+/* --- Mobile Menu Button --- */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+/* --- Media Queries (Mobile Responsiveness) --- */
+@media screen and (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+        padding-top: 60px; /* space for mobile button */
+    }
+}
